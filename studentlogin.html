@@ -25,6 +25,9 @@
                 padding: 12px;
                 font-size: 16px;
             }
+            #middle{
+                text-align: center;
+            }
         </style>
         <script>
             function bdate(dob)
@@ -145,9 +148,9 @@
                     alert('Select degree that you are pursuing');
                     return false;
                 }
-                else if(degtype==="")
+                else if(degtype==="" && (degree==="Bachelors"||degree==="Masters"))
                 {
-                    alert('Select type of degree');
+                    alert('Select designation of degree');
                     return false;
                 }
                 else if(yrstudy==="")
@@ -262,8 +265,10 @@
                     <td>Year of study: </td>
                     <td><input type="text" id="dstudy"></td>
                 </tr>
+                <tr>
+                    <td id="middle" colspan="2"><button type="button" onclick="return validate()">Verify</button></td>
+                </tr>
             </table>
-            <button type="button" onclick="return validate()">Verify</button>
         <table id="display" border="2px" hidden>
             <tr>
                 <td>Name: </td>
@@ -306,7 +311,7 @@
                 <td id="dispstudy"></td>
             </tr>
             <tr>
-                <td colspan="2"><button type="submit" id="submit" disabled>Submit</button></td>
+                <td id="middle" colspan="2"><button type="submit" id="submit" disabled>Submit</button></td>
             </tr>
         </table>
         </form>
