@@ -8,6 +8,7 @@
                 font-family:Arial, Helvetica, sans-serif;
                 background:linear-gradient(to right,lightblue,lightgreen);
                 padding: 20px;
+                margin: 0;
             }
             h1{
                 text-align:center;
@@ -17,15 +18,56 @@
             form{
                 border-radius: 20px;
                 padding: 20px;
+                background-color: lightyellow;
+                margin: auto;
+                width: 70%;
             }
             table{
                 width: 100%;
+                margin: 0;
             }
             td{
                 padding: 12px;
                 font-size: 16px;
             }
             #middle{
+                text-align: center;
+            }
+            input[type="text"],input[type="date"]{
+                padding: 10px;
+                border: 1px solid;
+                border-radius: 6px;
+                font-size: 15px;
+            }
+            input[type="text"]:focus,input[type="date"]:focus{
+                border-color: maroon;
+            }
+            input[type="radio"]{
+                margin-left: 10px;
+            }
+            button{
+                background-color: white;
+                color: navy;
+                border: none;
+                padding: 10px 15px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+            button:hover{
+                background-color: pink;
+            }
+            #display{
+                margin: 50% auto;
+                border-radius: 20px;
+                background-color: lavender;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            #display td{
+                border: 1px solid;
+            }
+            #apply{
+                color: blueviolet;
                 text-align: center;
             }
         </style>
@@ -186,40 +228,40 @@
         <form onsubmit="return submitdetails()">
             <table border="2px">
                 <tr>
-                    <td>Name: </td>
+                    <td id="apply">Name: </td>
                     <td><input type="text" id="name"></td>
                 </tr>
                 <tr>
-                    <td>Email: </td>
+                    <td id="apply">Email: </td>
                     <td><input type="text" id="email"></td>
                 </tr>
                 <tr>
-                    <td>Phone number:</td>
+                    <td id="apply">Phone number:</td>
                     <td><input type="text" id="phone"></td>
                 </tr>
                 <tr>
-                    <td>Date of Birth: </td>
+                    <td id="apply">Date of Birth: </td>
                     <td><input type="date" id="dob"></td>
                 </tr>
                 <tr>
-                    <td>Gender:</td>
+                    <td id="apply">Gender:</td>
                     <td><input type="radio" name="gen" value="Male">Male
                     <input type="radio" name="gen" value="Female">Female
                     <input type="radio" name="gen" value="Other">Other</td>
                 </tr>
                 <tr>
-                    <td>Roll Number: </td>
+                    <td id="apply">Roll Number: </td>
                     <td><input type="text" id="rno"></td>
                 </tr>
                 <tr>
-                    <td>Type of degree: </td>
+                    <td id="apply">Type of degree: </td>
                     <td><input type="radio" name="deg" value="Bachelors">Bachelors
                     <input type="radio" name="deg" value="Masters">Masters
                     <input type="radio" name="deg" value="Doctorate">Doctorate
                     <button type="button" onclick="return enable()">Enable Fields</button></td>
                 </tr>
                 <tr id="bachdeg" hidden>
-                    <td>Bachelors Degree: </td>
+                    <td id="apply">Bachelors Degree: </td>
                     <td><select id="bdegree">
                         <option>BS</option>
                         <option>BTech</option> 
@@ -235,7 +277,7 @@
                     <input type="text" id="obdegree"></td>
                 </tr>
                 <tr id="mastdeg" hidden>
-                    <td>Masters Degree: </td>
+                    <td id="apply">Masters Degree: </td>
                     <td><select id="mdegree">
                         <option>MS</option>
                         <option>MTech</option> 
@@ -246,7 +288,7 @@
                     <input type="text" id="omdegree"></td>
                 </tr>
                 <tr id="bachyr" hidden>
-                    <td>Year of study: </td>
+                    <td id="apply">Year of study: </td>
                     <td><select id="bstudy">
                         <option>1st</option>
                         <option>2nd</option>
@@ -255,14 +297,14 @@
                     </select></td>
                 </tr>
                 <tr id="mastyr" hidden>
-                    <td>Year of study: </td>
+                    <td id="apply">Year of study: </td>
                     <td><select id="mstudy">
                         <option>1st</option>
                         <option>2nd</option>
                     </select></td>
                 </tr>
                 <tr id="dryr" hidden>
-                    <td>Year of study: </td>
+                    <td id="apply">Year of study: </td>
                     <td><input type="text" id="dstudy"></td>
                 </tr>
                 <tr>
@@ -271,43 +313,43 @@
             </table>
         <table id="display" border="2px" hidden>
             <tr>
-                <td>Name: </td>
+                <td id="apply">Name: </td>
                 <td id="dispname"></td>
             </tr>
             <tr>
-                <td>Email: </td>
+                <td id="apply">Email: </td>
                 <td id="dispemail"></td>
             </tr>
             <tr>
-                <td>Phone: </td>
+                <td id="apply">Phone: </td>
                 <td id="dispphone"></td>
             </tr>
             <tr>
-                <td>Date of birth: </td>
+                <td id="apply">Date of birth: </td>
                 <td id="dispdob"></td>
             </tr>
             <tr>
-                <td>Age: </td>
+                <td id="apply">Age: </td>
                 <td id="dispage"></td>
             </tr>
             <tr>
-                <td>Gender: </td>
+                <td id="apply">Gender: </td>
                 <td id="dispgen"></td>
             </tr>
             <tr>
-                <td>Roll Number: </td>
+                <td id="apply">Roll Number: </td>
                 <td id="disproll"></td>
             </tr>
             <tr>
-                <td>Type of degree: </td>
+                <td id="apply">Type of degree: </td>
                 <td id="dispdegree"></td>
             </tr>
             <tr>
-                <td>Designation: </td>
+                <td id="apply">Designation: </td>
                 <td id="dispdesig"></td>
             </tr>
             <tr>
-                <td>Year of Study: </td>
+                <td id="apply">Year of Study: </td>
                 <td id="dispstudy"></td>
             </tr>
             <tr>
