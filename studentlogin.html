@@ -97,6 +97,8 @@
                     document.getElementById('bachyr').hidden=false;
                     document.getElementById('mastdeg').hidden=true;
                     document.getElementById('mastyr').hidden=true;
+                    document.getElementById('mastdeg').hidden=true;
+                    document.getElementById('drdeg').hidden=true;
                     document.getElementById('dryr').hidden=true;
                 }
                 else if(degree==="Masters"){
@@ -104,6 +106,7 @@
                     document.getElementById('bachyr').hidden=true;
                     document.getElementById('mastdeg').hidden=false;
                     document.getElementById('mastyr').hidden=false;
+                    document.getElementById('drdeg').hidden=true;
                     document.getElementById('dryr').hidden=true;
                 }
                 else if(degree==="Doctorate"){
@@ -111,6 +114,7 @@
                     document.getElementById('bachyr').hidden=true;
                     document.getElementById('mastdeg').hidden=true;
                     document.getElementById('mastyr').hidden=true;
+                    document.getElementById('drdeg').hidden=false;
                     document.getElementById('dryr').hidden=false;
                 }
                 return degree;
@@ -153,6 +157,7 @@
                 }
                 else if(degree==="Doctorate")
                 {
+                    degtype=document.getElementById('ddegree').value;
                     yrstudy=document.getElementById('dstudy').value;
                 }
                 if(name==="")
@@ -190,9 +195,9 @@
                     alert('Select degree that you are pursuing');
                     return false;
                 }
-                else if(degtype==="" && (degree==="Bachelors"||degree==="Masters"))
+                else if(degtype==="")
                 {
-                    alert('Select designation of degree');
+                    alert('Select programme');
                     return false;
                 }
                 else if(yrstudy==="")
@@ -287,6 +292,10 @@
                     <p>Other: </p>
                     <input type="text" id="omdegree"></td>
                 </tr>
+                <tr id="drdeg" hidden>
+                    <td id="apply">Field of doctorate: </td>
+                    <td><input type="text" id="ddegree"></td>
+                </tr>
                 <tr id="bachyr" hidden>
                     <td id="apply">Year of study: </td>
                     <td><select id="bstudy">
@@ -345,7 +354,7 @@
                 <td id="dispdegree"></td>
             </tr>
             <tr>
-                <td id="apply">Designation: </td>
+                <td id="apply">Programme: </td>
                 <td id="dispdesig"></td>
             </tr>
             <tr>
