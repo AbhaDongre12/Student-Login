@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Student Login Portal</title>
+        <style>
+            body{
+                font-family:Arial, Helvetica, sans-serif;
+                background:linear-gradient(to right,lightblue,lightgreen);
+                padding: 20px;
+            }
+            h1{
+                text-align:center;
+                color:navy;
+                margin-bottom: 20px;
+            }
+            form{
+                border-radius: 20px;
+                padding: 20px;
+            }
+            table{
+                width: 100%;
+            }
+            td{
+                padding: 12px;
+                font-size: 16px;
+            }
+        </style>
+        <script>
+            function bdate(dob)
+            {
+                const bdate=new Date(dob);
+                const today=new Date();
+                let age=today.getFullYear()-bdate.getFullYear();
+                const monthDiff=today.getMonth()-bdate.getMonth();
+                if(monthDiff<0||(monthDiff===0 && today.getDate()<bdate.getDate())){
+                    age--;
+                }
+                return age;
+            }
+            function enable()
+            {
+                let deg=document.getElementsByName('deg');
+                let degree="";
+                for(let i=0;i<deg.length;i++){
+                    if(deg[i].checked){
+                        degree=deg[i].value;
+                    }
+                }
+                if(degree==="Bachelors"){
+                    document.getElementById('bachdeg').hidden=false;
+                    document.getElementById('bachyr').hidden=false;
+                    document.getElementById('mastdeg').hidden=true;
+                    document.getElementById('mastyr').hidden=true;
+                    document.getElementById('dryr').hidden=true;
+                }
+                else if(degree==="Masters"){
+                    document.getElementById('bachdeg').hidden=true;
+                    document.getElementById('bachyr').hidden=true;
+                    document.getElementById('mastdeg').hidden=false;
+                    document.getElementById('mastyr').hidden=false;
+                    document.getElementById('dryr').hidden=true;
+                }
+                else if(degree==="Doctorate"){
+                    document.getElementById('bachdeg').hidden=true;
+                    document.getElementById('bachyr').hidden=true;
+                    document.getElementById('mastdeg').hidden=true;
+                    document.getElementById('mastyr').hidden=true;
+                    document.getElementById('dryr').hidden=false;
+                }
+                return degree;
+            }
+            function validate()
+            {
+                let name=document.getElementById("name").value;
+                let email=document.getElementById("email").value;
+                let patternemail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                let phone=document.getElementById("phone").value;
+                let patternphone=/^[1-9][0-9]{9}$/
+                let dob=document.getElementById("dob").value;
+                let age=bdate(dob);
+                let gen=document.getElementsByName("gen");
+                let gender="";
+                for(let i=0;i<gen.length;i++){
+                    if(gen[i].checked){
+                        gender=gen[i].value;
+                    }
+                }
+                let roll=document.getElementById('rno').value;
+                let degree=enable();
+                let degtype="";
+                let yrstudy="";
+                if(degree==="Bachelors") 
+                {
+                    degtype=document.getElementById('bdegree').value;
+                    if(degtype===""){
+                        degtype=document.getElementById('obdegree').value;
+                    }
+                    yrstudy=document.getElementById('bstudy').value;
+                }
+                else if(degree==="Masters")
+                {
+                    degtype=document.getElementById('mdegree').value;
+                    if(degtype===""){
+                        degtype=document.getElementById('omdegree').value;
+                    }
+                    yrstudy=document.getElementById('mstudy').value;
+                }
+                else if(degree==="Doctorate")
+                {
+                    yrstudy=document.getElementById('dstudy').value;
+                }
+                if(name==="")
+                {
+                    alert('Enter name');
+                    return false;
+                }
+                else if(!patternemail.test(email))
+                {
+                    alert('Enter valid email');
+                    return false;
+                }
+                else if(!patternphone.test(phone))
+                {
+                    alert('Enter valid phone number');
+                    return false;
+                }
+                else if(dob==="")
+                {
+                    alert('Enter date of birth');
+                    return false;
+                }
+                else if(gender==="")
+                {
+                    alert('Select gender');
+                    return false;
+                }
+                else if(roll==="")
+                {
+                    alert('Enter roll number');
+                    return false;
+                }
+                else if(degree==="")
+                {
+                    alert('Select degree that you are pursuing');
+                    return false;
+                }
+                else if(degtype==="")
+                {
+                    alert('Select type of degree');
+                    return false;
+                }
+                else if(yrstudy==="")
+                {
+                    alert('Select year of study');
+                    return false;
+                }
+                else{
+                    document.getElementById('display').hidden=false;
+                    document.getElementById('dispname').innerHTML=name;
+                    document.getElementById('dispemail').innerHTML=email;
+                    document.getElementById('dispphone').innerHTML=phone;
+                    document.getElementById('dispdob').innerHTML=dob;
+                    document.getElementById('dispage').innerHTML=age;
+                    document.getElementById('dispgen').innerHTML=gender;
+                    document.getElementById('disproll').innerHTML=roll;
+                    document.getElementById('dispdegree').innerHTML=degree;
+                    document.getElementById('dispdesig').innerHTML=degtype;
+                    document.getElementById('dispstudy').innerHTML=yrstudy;
+                    document.getElementById('submit').disabled=false;
+                    return false;
+                }
+                return false;
+            }
+            function submitdetails()
+            {
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Student Login Portal</h1>
+        <form onsubmit="return submitdetails()">
+            <table border="2px">
+                <tr>
+                    <td>Name: </td>
+                    <td><input type="text" id="name"></td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td><input type="text" id="email"></td>
+                </tr>
+                <tr>
+                    <td>Phone number:</td>
+                    <td><input type="text" id="phone"></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth: </td>
+                    <td><input type="date" id="dob"></td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td><input type="radio" name="gen" value="Male">Male
+                    <input type="radio" name="gen" value="Female">Female
+                    <input type="radio" name="gen" value="Other">Other</td>
+                </tr>
+                <tr>
+                    <td>Roll Number: </td>
+                    <td><input type="text" id="rno"></td>
+                </tr>
+                <tr>
+                    <td>Type of degree: </td>
+                    <td><input type="radio" name="deg" value="Bachelors">Bachelors
+                    <input type="radio" name="deg" value="Masters">Masters
+                    <input type="radio" name="deg" value="Doctorate">Doctorate
+                    <button type="button" onclick="return enable()">Enable Fields</button></td>
+                </tr>
+                <tr id="bachdeg" hidden>
+                    <td>Bachelors Degree: </td>
+                    <td><select id="bdegree">
+                        <option>BS</option>
+                        <option>BTech</option> 
+                        <option>BA</option>
+                        <option>BFA</option>  
+                        <option>BBA</option>
+                        <option>BCom</option>
+                        <option>BE</option>     
+                        <option>BArch</option>
+                        <option>BDes</option>
+                    </select><br>
+                    <p>Other:</p>
+                    <input type="text" id="obdegree"></td>
+                </tr>
+                <tr id="mastdeg" hidden>
+                    <td>Masters Degree: </td>
+                    <td><select id="mdegree">
+                        <option>MS</option>
+                        <option>MTech</option> 
+                        <option>MBA</option>
+                        <option>MA</option>      
+                    </select><br>
+                    <p>Other: </p>
+                    <input type="text" id="omdegree"></td>
+                </tr>
+                <tr id="bachyr" hidden>
+                    <td>Year of study: </td>
+                    <td><select id="bstudy">
+                        <option>1st</option>
+                        <option>2nd</option>
+                        <option>3rd</option>
+                        <option>4th</option>
+                    </select></td>
+                </tr>
+                <tr id="mastyr" hidden>
+                    <td>Year of study: </td>
+                    <td><select id="mstudy">
+                        <option>1st</option>
+                        <option>2nd</option>
+                    </select></td>
+                </tr>
+                <tr id="dryr" hidden>
+                    <td>Year of study: </td>
+                    <td><input type="text" id="dstudy"></td>
+                </tr>
+            </table>
+            <button type="button" onclick="return validate()">Verify</button>
+        <table id="display" border="2px" hidden>
+            <tr>
+                <td>Name: </td>
+                <td id="dispname"></td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td id="dispemail"></td>
+            </tr>
+            <tr>
+                <td>Phone: </td>
+                <td id="dispphone"></td>
+            </tr>
+            <tr>
+                <td>Date of birth: </td>
+                <td id="dispdob"></td>
+            </tr>
+            <tr>
+                <td>Age: </td>
+                <td id="dispage"></td>
+            </tr>
+            <tr>
+                <td>Gender: </td>
+                <td id="dispgen"></td>
+            </tr>
+            <tr>
+                <td>Roll Number: </td>
+                <td id="disproll"></td>
+            </tr>
+            <tr>
+                <td>Type of degree: </td>
+                <td id="dispdegree"></td>
+            </tr>
+            <tr>
+                <td>Designation: </td>
+                <td id="dispdesig"></td>
+            </tr>
+            <tr>
+                <td>Year of Study: </td>
+                <td id="dispstudy"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit" id="submit" disabled>Submit</button></td>
+            </tr>
+        </table>
+        </form>
+    </body>
+</html>
